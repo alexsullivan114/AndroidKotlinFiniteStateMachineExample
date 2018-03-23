@@ -13,7 +13,7 @@ interface SandwichState {
 }
 
 /**
- * A scontainer class for a new [SandwichState] and an emitted [Command]
+ * A container class for a new [SandwichState] and an emitted [Command]
  */
 data class StateChange(val newState: SandwichState, val command: Command? = null)
 
@@ -43,5 +43,5 @@ sealed class Action {
 sealed class ViewState {
   class AddSandwichViewState : ViewState()
   class DescribeSandwichViewState : ViewState()
-  class SandwichListViewState(val sandwhiches: List<Sandwich>): ViewState()
+  class SandwichListViewState(val sandwiches: List<Sandwich>): ViewState()
 }

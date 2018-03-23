@@ -27,14 +27,8 @@ class SandwichPresenter(private val sandwichView: SandwichView) {
 
     when (newState) {
       is ViewState.DescribeSandwichViewState -> sandwichView.showSandwichInputFields()
-      is ViewState.SandwichListViewState -> sandwichView.showSandwichList(newState.sandwhiches)
-      is ViewState.AddSandwichViewState -> {
-        val predefinedSandwiches = listOf(
-          Sandwich("Meatball", GRINDER),
-          Sandwich("Italian", GRINDER),
-          Sandwich("Caesar", WRAP)
-        )
-        sandwichView.showAddSandwichView(predefinedSandwiches)
+      is ViewState.SandwichListViewState -> sandwichView.showSandwichList(newState.sandwiches)
+      is ViewState.AddSandwichViewState -> { sandwichView.showAddSandwichView(predefinedSandwichList)
       }
     }
 
@@ -51,15 +45,4 @@ class SandwichPresenter(private val sandwichView: SandwichView) {
     }
   }
 
-}
-
-interface SandwichView {
-  fun showSandwichList(sandwiches: List<Sandwich>)
-  fun hideSandwichList()
-
-  fun showAddSandwichView(predefinedSandwiches: List<Sandwich>)
-  fun hideAddSandwichView()
-
-  fun showSandwichInputFields()
-  fun hideSandwichInputFields()
 }

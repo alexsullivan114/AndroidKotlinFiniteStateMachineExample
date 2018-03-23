@@ -1,6 +1,6 @@
 <resources>
-  <string name="app_name">StateMachineExample</string>
-  <string name="wrap">Wrap</string>
+  <string name="app_name">Sammiches</string>
+  <string name="wrap">wrap</string>
   <string name="grinder">grinder</string>
   <string name="input_sandwich_name_here">Input Sandwich Name Here</string>
   <string name="submit">submit</string>

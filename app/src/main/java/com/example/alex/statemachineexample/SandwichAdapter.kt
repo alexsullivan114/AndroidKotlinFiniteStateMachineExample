@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.adapter_sandwich.view.name
+import kotlinx.android.synthetic.main.adapter_sandwich.view.sandwich_picture
 import kotlinx.android.synthetic.main.adapter_sandwich.view.type
 
 class SandwichAdapter(
@@ -23,8 +24,19 @@ class SandwichAdapter(
   override fun onBindViewHolder(holder: SandwichViewHolder, position: Int) {
     val sandwich = sandwiches[position]
     holder.itemView.name.text = sandwich.name
-    holder.itemView.type.text = sandwich.type.toString()
+    holder.itemView.type.text = sandwich.type.toString().toLowerCase()
     holder.itemView.setOnClickListener { clickListener?.invoke(sandwich) }
+    holder.itemView.sandwich_picture.setImageResource(randomSandwichImage())
+  }
+
+  private fun randomSandwichImage(): Int {
+    val images = listOf(
+      R.drawable.sandwich_1,
+      R.drawable.sandwich_2,
+      R.drawable.sandwich_3
+    )
+
+    return images.shuffled().first()
   }
 }
 

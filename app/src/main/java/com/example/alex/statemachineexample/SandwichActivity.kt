@@ -2,6 +2,7 @@ package com.example.alex.statemachineexample
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.example.alex.statemachineexample.SandwichType.GRINDER
 import com.example.alex.statemachineexample.SandwichType.WRAP
@@ -25,6 +26,8 @@ class SandwichActivity : AppCompatActivity(), SandwichView {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_sandwhich)
     presenter = SandwichPresenter(this)
+
+    predefined_sandwich_list.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
   }
 
   override fun showSandwichList(sandwiches: List<Sandwich>) {
