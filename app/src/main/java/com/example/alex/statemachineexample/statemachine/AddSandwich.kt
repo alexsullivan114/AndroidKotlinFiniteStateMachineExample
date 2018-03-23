@@ -11,7 +11,7 @@ class AddSandwich(private val existingSandwiches: List<Sandwich>) : SandwichStat
   override fun consumeAction(action: Action): StateChange {
     return when (action) {
       is Action.SandwichTypeSelected -> StateChange(
-        DescribeSandwich(
+        NameSandwich(
           existingSandwiches,
           action.type
         )

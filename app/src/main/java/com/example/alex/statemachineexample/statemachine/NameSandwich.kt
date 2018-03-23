@@ -5,7 +5,7 @@ import com.example.alex.statemachineexample.SandwichType
 import com.example.alex.statemachineexample.statemachine.Command.SaveSandwich
 import com.example.alex.statemachineexample.statemachine.ViewState.DescribeSandwichViewState
 
-class DescribeSandwich(
+class NameSandwich(
   private val existingSandwiches: List<Sandwich>,
   private val newSandwichType: SandwichType
 ) : SandwichState {
