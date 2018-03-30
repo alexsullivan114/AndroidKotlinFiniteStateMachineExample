@@ -8,14 +8,30 @@ import com.example.alex.statemachineexample.statemachine.SandwichList
 import com.example.alex.statemachineexample.statemachine.SandwichState
 import com.example.alex.statemachineexample.statemachine.ViewState
 
-class SandwichPresenter(private val sandwichView: SandwichView) {
+class SandwichPresenterImpl(private val sandwichView: SandwichView): SandwichPresenter {
   private var currentState: SandwichState = SandwichList(emptyList())
 
   init {
     renderViewState(currentState.viewState, null)
   }
 
-  fun acceptAction(action: Action) {
+  override fun addSandwichClicked() {
+    pushAction(Action.AddSandwichClicked())
+  }
+
+  override fun sandwichTypeClicked(type: SandwichType) {
+    pushAction(Action.SandwichTypeSelected(type))
+  }
+
+  override fun predefinedSandwichClicked(sandwich: Sandwich) {
+    pushAction(Action.PredefinedSandwichSelected(sandwich))
+  }
+
+  override fun submitSandwichClicked(sandwichName: String) {
+    pushAction(Action.SubmitSandwichClicked(sandwichName))
+  }
+
+  fun pushAction(action: Action) {
     val oldViewState = currentState.viewState
     val stateChange = currentState.consumeAction(action)
     currentState = stateChange.newState

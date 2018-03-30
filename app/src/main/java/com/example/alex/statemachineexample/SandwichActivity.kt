@@ -25,7 +25,7 @@ class SandwichActivity : AppCompatActivity(), SandwichView {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_sandwhich)
-    presenter = SandwichPresenter(this)
+    presenter = SandwichPresenterImpl(this)
 
     predefined_sandwich_list.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
   }
@@ -33,7 +33,7 @@ class SandwichActivity : AppCompatActivity(), SandwichView {
   override fun showSandwichList(sandwiches: List<Sandwich>) {
     sandwich_list_container.visibility = View.VISIBLE
     added_sandwich_list.adapter = SandwichAdapter(sandwiches)
-    add_sandwich_button.setOnClickListener { presenter.acceptAction(Action.AddSandwichClicked()) }
+    add_sandwich_button.setOnClickListener { presenter.addSandwichClicked() }
   }
 
   override fun hideSandwichList() {
@@ -43,13 +43,13 @@ class SandwichActivity : AppCompatActivity(), SandwichView {
   override fun showAddSandwichView(predefinedSandwiches: List<Sandwich>) {
     add_sandwich.visibility = View.VISIBLE
     wrap_button.setOnClickListener {
-      presenter.acceptAction(Action.SandwichTypeSelected(WRAP))
+      presenter.sandwichTypeClicked(WRAP)
     }
     grinder_button.setOnClickListener {
-      presenter.acceptAction(Action.SandwichTypeSelected(GRINDER))
+      presenter.sandwichTypeClicked(GRINDER)
     }
     predefined_sandwich_list.adapter = SandwichAdapter(predefinedSandwiches, {
-      presenter.acceptAction(Action.PredefinedSandwichSelected(it))
+      presenter.predefinedSandwichClicked(it)
     })
   }
 
@@ -60,7 +60,7 @@ class SandwichActivity : AppCompatActivity(), SandwichView {
   override fun showSandwichInputFields() {
     sandwich_inputs.visibility = View.VISIBLE
     submit_button.setOnClickListener {
-      presenter.acceptAction(Action.SubmitSandwichClicked(sandwich_name.text.toString()))
+      presenter.submitSandwichClicked(sandwich_name.text.toString())
     }
   }
 

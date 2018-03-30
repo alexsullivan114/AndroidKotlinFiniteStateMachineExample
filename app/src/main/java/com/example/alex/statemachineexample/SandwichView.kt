@@ -10,3 +10,10 @@ interface SandwichView {
   fun showSandwichInputFields()
   fun hideSandwichInputFields()
 }
+
+interface SandwichPresenter {
+  fun addSandwichClicked()
+  fun sandwichTypeClicked(type: SandwichType)
+  fun predefinedSandwichClicked(sandwich: Sandwich)
+  fun submitSandwichClicked(sandwichName: String)
+}
